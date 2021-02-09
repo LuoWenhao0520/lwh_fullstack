@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/index.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="wrapBg">
+        <!-- 开始标题 -->
+        <div id="headTitle">
+            <img src="./img/bird0.png" alt="" id="headBird">
+        </div>
+        <!-- 开始按钮 -->
+        <button id="startBtn"></button>
+        <!-- 草地 -->
+        <div id="grassLand1"></div>
+        <div id="grassLand2"></div>
+    </div>
+    <script>
+        // 拿到标题的dom结构
+        // 设置该dom结构的top值
+        var jsWrapBg = document.getElementById('wrapBg');
+        var jsHeadTitle = document.getElementById('headTitle');
+        var jsHeadBird = document.getElementById('headBird');
+
+        // var index = 0;
+        var imgArr = ['img/bird0.png','img/bird1.png'];
+        // 定时器，每个多少时间执行一次
+        var headWaveTimer = setInterval(headWave,100)
+        var Y = 3 //标题的摆动幅度
+        function headWave() {
+
+            // 设置dom结构top值
+
+            jsHeadTitle.style.top = jsHeadTitle.offsetTop + Y + 'px';
+            Y = -Y;
+            // bird图片
+            if(Y > 0){
+                jsHeadBird.src = imgArr[0];
+            }else{
+                jsHeadBird.src = imgArr[1];
+            }
+        }
+        
+        // 草地动画
+        var jsGrassLand1 = document.getElementById('grassLand1');
+        var jsGrassLand2 = document.getElementById('grassLand2');
+
+        setInterval(landRun,100)
+        var L = 3;
+        function landRun() {
+            if(jsGrassLand1.offsetLeft <= -343){
+                jsGrassLand1.style.left = "343px";
+            }
+            if(jsGrassLand2.offsetLeft <= -343){
+                jsGrassLand2.style.left = "343px";
+            }
+
+            jsGrassLand1.style.left = jsGrassLand1.offsetLeft - 3 + 'px';
+            jsGrassLand2.style.left = jsGrassLand2.offsetLeft - 3 + 'px';
+        }
+        
+        // 开始按钮
+        var jsStartBtn = document.getElementById('startBtn');
+        jsStartBtn.onclick = function() {
+            jsHeadTitle.style.display = 'none';
+            jsStartBtn.style.display = 'none';
+            clearInterval(headWaveTimer)
+        }
+    </script>
+</body>
+</html>

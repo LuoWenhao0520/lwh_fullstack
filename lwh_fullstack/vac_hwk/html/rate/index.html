@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_2109870_8idpyndchp2.css">
+    <title>Document</title>
+    <style>
+        /* 去掉默认样式 */
+        input{
+            appearance: none;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+        .rate-content{
+            display: flex;
+            flex-flow: row-reverse;
+        }
+        input[name="rate"]{
+            font-family: "iconfont";
+            font-size: 30px;
+            padding-right: 10px;
+        }
+        input[name="rate"]::before{
+            content: "\e611";
+            color: #999;
+        }
+        input[name="rate"]:checked::before{
+            content: "\e612";
+            color: #ffa822;
+        }
+        input[name="rate"]:hover{
+            transform: all 0.4s ease;
+            transform: scale(1.2);
+        }
+
+        input[name = "rate"]:hover::before{
+            content: "\e612";
+            color: #ffa822;
+        }
+
+        input[name="rate"]:checked ~ input[name="rate"]::before{
+            content: "\e612";
+            color: #ffa822;
+        }
+        input[name = "rate"]:hover ~ input[name="rate"]::before{
+            content: "\e612";
+            color: #ffa822;
+        }
+    </style>
+</head>
+<body>
+    <div class="rate-content">
+        <input type="radio" name = "rate">
+        <input type="radio" name = "rate">
+        <input type="radio" name = "rate">
+        <input type="radio" name = "rate">
+        <input type="radio" name = "rate">
+        <!-- <button>submit</button> -->
+    </div>
+</body>
+</html>
