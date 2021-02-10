@@ -9,6 +9,7 @@
 </head>
 <body>
     <div id="wrapBg">
+
         <!-- 开始标题 -->
         <div id="headTitle">
             <img src="./img/bird0.png" alt="" id="headBird">
@@ -19,13 +20,18 @@
         <div id="grassLand1"></div>
         <div id="grassLand2"></div>
     </div>
+    <script src="./js/bird.js"></script>
+    <script src="./js/baseObj.js"></script>
+    <script src="./js/block.js"></script>
     <script>
         // 拿到标题的dom结构
         // 设置该dom结构的top值
         var jsWrapBg = document.getElementById('wrapBg');
         var jsHeadTitle = document.getElementById('headTitle');
         var jsHeadBird = document.getElementById('headBird');
+        var blockArr = []
 
+        var blockDistance = baseObj.randomNum(120,350)
         // var index = 0;
         var imgArr = ['img/bird0.png','img/bird1.png'];
         // 定时器，每个多少时间执行一次
@@ -43,13 +49,15 @@
             }else{
                 jsHeadBird.src = imgArr[1];
             }
+
+            
         }
         
         // 草地动画
         var jsGrassLand1 = document.getElementById('grassLand1');
         var jsGrassLand2 = document.getElementById('grassLand2');
 
-        setInterval(landRun,100)
+        var landTimer = setInterval(landRun,100)
         var L = 3;
         function landRun() {
             if(jsGrassLand1.offsetLeft <= -343){
@@ -61,6 +69,27 @@
 
             jsGrassLand1.style.left = jsGrassLand1.offsetLeft - 3 + 'px';
             jsGrassLand2.style.left = jsGrassLand2.offsetLeft - 3 + 'px';
+            
+            // 管道移动
+            if(blockArr.length) {
+                for(var i = 0;i < blockArr.length;i++) {
+                    blockArr[i].moveBlock()
+                    var x = baseObj.rectangleCrashExamine(blockArr[i].downDivWrap,bird.div)
+                    var y = baseObj.rectangleCrashExamine(blockArr[i].upDivWrap,bird.div)
+                    var z = bird.div.offsetTop >= 390
+                    if(x || y || z){
+                        clearInterval(landTimer)
+                        jsWrapBg.onclick = null
+                        bird.fallSpeed = 0
+                    }
+                }
+                if(blockArr[blockArr.length - 1].downDivWrap.offsetLeft < (450 - baseObj.randomNum(120,350))) {
+                    var newBlock = new Block()
+                    newBlock.createBlock()
+                    blockArr.push(newBlock)
+                }
+            }
+            
         }
         
         // 开始按钮
@@ -69,7 +98,23 @@
             jsHeadTitle.style.display = 'none';
             jsStartBtn.style.display = 'none';
             clearInterval(headWaveTimer)
+
+            // 插入小鸟到页面中
+            bird.showBird(jsWrapBg)
+            bird.flyBird()
+            bird.wingWave()
+
+            jsWrapBg.onclick = function() {
+                bird.fallSpeed = -8
+            }
+
+            // 管道出现
+            var b = new Block()
+            b.createBlock()
+            blockArr.push(b)
+            
         }
+        
     </script>
 </body>
 </html>
