@@ -1,0 +1,170 @@
+*
+    margin: 0;
+    padding: 0;
+
+ul li
+    list-style none
+
+#toast
+    display: none
+
+.movie
+    width: 100%;
+    &-head
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        background-color: #1e2025;
+        color: #fff;
+        padding: 0 10px;
+        box-sizing border-box
+        display: flex
+        .iconfont
+            width: 16px;
+        .title
+            flex: 1
+            text-align: center;
+    
+    &-info
+        padding: 15px;
+        background-color: #1e2025;
+        &__desc
+
+            width: 100%;
+            display flex
+            .info-pic
+                width: 122px;
+                height: 165px;
+                overflow: hidden;
+                img
+                    width: 100%;
+            .info-container
+                flex: 1
+                color #9b9da2
+                font-size: 12px;
+                margin-left: 10px;
+                .name
+                    color #fff
+                    font-size: 24px;
+                    font-family: Arial,sans-serif;
+                    font-weight: normal;
+                .type
+                    span
+                        width: 40px;
+                        height: 14px;
+                        display inline-block
+                        background: url('https://s0.meituan.net/bs/myfe/canary/file/asgard/images/movie/movie-tag-2DIMAX.png')
+                        background-size: cover
+                        vertical-align middle
+                        margin-left: 5px;
+
+                .btn-wrap
+                    display flex
+                    margin-top: 10px;
+                    .flex
+                        flex 1
+                        background-color: #58575d;
+                        height: 32px;
+                        line-height: 32px;
+                        color #fff
+                        text-align: center;
+                        border-radius: 4px;
+                        &:nth-child(1)
+                            margin-right 5px;
+                        &:nth-child(2)
+                            margin-left 5px;
+
+                        .iconfont
+                           font-size: 14px;
+                        
+        &__rate
+            background-color: #161619;
+            border-radius: 4px;
+            padding: 10px;
+            margin-top: 15px;
+            .rate-title
+                display: flex
+                justify-content: space-between
+                font-size: 15px;
+                &__left
+                    color #fff
+                    .icon-fenlei-maozi
+                        color: red
+                &__right
+                    color #68686b
+                    font-size: 10px;
+            .rate-detail
+                display: flex
+                height: 49px;
+                &__left
+                    flex: 454;
+                    display flex
+                    .grade
+                        margin-left: 10px;
+                        text-align: center;
+                        h2
+                            color #fcc300
+                        p
+                            color #68686b
+                            font-size: 10px;
+                    .star
+                        margin-right: 10px;
+                        text-align: right;
+                        display flex
+                        align-items: center;
+                        .list
+                            display: flex
+                            // 弹性容器让子容器y轴居中
+                            align-items: center;
+                            margin: 2px 0;
+                            .star-num
+                                font-size: 0;
+                                width: 30px;
+                                img
+                                    width: 6px;
+                                    height: 6px
+                            .percent
+                                width: 78px;
+                                height: 4px;
+                                background-color: #252528;
+                                border-radius: 2px;
+                                position: relative;
+                                .percent-val
+                                    display block
+                                    position: absolute;
+                                    left: 0;
+                                    top: 0;
+                                    height: 100%;
+                                    background-color: #fcc300;
+                                    width: 80%;
+                                    border-radius: 2px;
+                &__right
+                    flex: 266;
+                    display flex
+                    align-items: center;
+                    img
+                        height: 46px;
+
+    &-desc
+        padding: 15px;
+        // 文本显示多少行
+        .content
+            overflow: auto;
+            transition all 0.5s ease
+        .line-clamp
+            display -webkit-box
+            -webkit-box-orient vertical
+            -webkit-line-clamp 3
+            word-wrap break-word
+            word-break: break-all
+            overflow: hidden;
+        .arrow
+            text-align: center;
+            font-size: 16px;
+            .iconfont
+                display: block
+                transform: rotateZ(0deg)
+                transition all 0.5s ease
+        .arrow .up
+            display block
+            transform: rotateZ(180deg)

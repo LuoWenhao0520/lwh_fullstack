@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.bootcdn.net/ajax/libs/weui/2.3.0/style/weui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_2373160_beuhkcbq65l.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="movie">
+        <div class="movie-head">
+            <i class="iconfont icon-fanhui"></i>
+            <span class="title">影片详情</span>
+        </div>
+        <div class="movie-info">
+            <div class="movie-info__desc">
+                <div class="info-pic">
+                    <img src="https://p1.meituan.net/movie/ece9ff81e6f0af2c859aa151e42a33312706648.jpg@464w_644h_1e_1c" alt="">
+                </div>
+                <div class="info-container">
+                    <h2 class="name">唐人街探案</h2>
+                    <p class="type">剧情，喜剧<span></span></p>
+                    <p class="timer">中国大陆 / 153分钟</p>
+                    <p class="play-time">2020-10-01 08:00 中国大陆上映</p>
+                    <div class="btn-wrap">
+                        <div class="flex" id="watch">
+                            <i class="iconfont icon-xihuan"></i>
+                            想看
+                        </div>
+                        <div class="flex">
+                            <i class="iconfont icon-star"></i>
+                            看过
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="movie-info__rate">
+                <div class="rate-title">
+                    <div class="rate-title__left">
+                        <i class="iconfont icon-fenlei-maozi"></i>
+                        猫眼购票评分
+                    </div>
+                    <div class="rate-title__right">
+                        <span class="want">312414</span>人想看
+                        <span class="watched">32131</span>人看过
+                        <i class="iconfont icon-jiantou"></i>
+                    </div>
+                </div>
+                <div class="rate-detail">
+                    <div class="rate-detail__left">
+                        <div class="grade">
+                            <h2>9.2</h2>
+                            <p><span>6545</span>人评分</p>
+                        </div>
+                        <div class="star">
+                            <ul>
+                                <li class="list">
+                                    <p class="star-num">
+                                        <img src="./img/star.png" alt="">
+                                        <img src="./img/star.png" alt="">
+                                        <img src="./img/star.png" alt="">
+                                        <img src="./img/star.png" alt="">
+                                        <img src="./img/star.png" alt="">
+                                    </p>
+                                    <p class="percent">
+                                        <span class="percent-val"></span>
+                                    </p>
+                                </li>
+                                <li class="list">
+                                    <p class="star-num">
+                                        <img src="./img/star.png" alt="">
+                                        <img src="./img/star.png" alt="">
+                                        <img src="./img/star.png" alt="">
+                                        <img src="./img/star.png" alt="">
+                                    </p>
+                                    <p class="percent">
+                                        <span class="percent-val"></span>
+                                    </p>
+                                </li>
+                                <li class="list">
+                                    <p class="star-num">
+                                        <img src="./img/star.png" alt="">
+                                        <img src="./img/star.png" alt="">
+                                        <img src="./img/star.png" alt="">
+                                    </p>
+                                    <p class="percent">
+                                        <span class="percent-val"></span>
+                                    </p>
+                                </li>
+                                <li class="list">
+                                    <p class="star-num">
+                                        <img src="./img/star.png" alt="">
+                                        <img src="./img/star.png" alt="">
+                                    </p>
+                                    <p class="percent">
+                                        <span class="percent-val"></span>
+                                    </p>
+                                </li>
+                                <li class="list">
+                                    <p class="star-num">
+                                        <img src="./img/star.png" alt="">
+                                    </p>
+                                    <p class="percent">
+                                        <span class="percent-val"></span>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="rate-detail__right">
+                        <img src="./img/屏幕截图 2021-02-14 130713.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="movie-desc">
+            <p class="content line-clamp">电影《我和我的家乡》定档2020年国庆，延续《我和我的祖国》集体创作的方式，由张艺谋担当总监制，宁浩担任总导演，张一白担任总策划，宁浩、徐峥、陈思诚、闫非&amp;彭大魔、邓超&amp;俞白眉分别执导五个故事</p>
+            <p class="arrow">
+                <i class="iconfont icon-arrowdown"></i>
+            </p>
+        </div>
+        <div class="movie-acters">
+            <h2 class="title">演职人员</h2>
+        </div>
+        <!-- toast -->
+        <div id="toast">
+            <div class="weui-mask_transparent"></div>
+            <div class="weui-toast">
+                <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+                <p class="weui-toast__content"></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        var watchBtn = document.getElementById('watch');
+        var toast = document.getElementById('toast')
+        var xihuan = document.querySelector('.icon-xihuan')
+        var isLiked = false
+        var toastContent = document.querySelector('.weui-toast__content');
+        
+        watchBtn.addEventListener('click',function(){
+            toast.style.display = 'block'
+            if(!isLiked){
+                xihuan.style.color = 'red'
+                toastContent.innerHTML = '已标注想看'
+            }else{
+                xihuan.style.color = 'white'
+                toastContent.innerHTML = '已取消想看'
+            }
+            setTimeout(function(){
+                toast.style.display = 'none'
+            },1000)
+            isLiked = !isLiked
+        })
+
+        // 简介
+        var content = document.querySelector('.movie-desc')
+        var isArrowed = false;
+        content.addEventListener('click',function(){
+            var cont = content.querySelector('.content')
+            var arrowUp = content.querySelector('.iconfont')
+            if(!isArrowed){
+                cont.classList.remove('line-clamp')
+                arrowUp.classList.add('up')
+            }else{
+                cont.classList.add('line-clamp')
+                arrowUp.classList.remove('up')
+            }
+            isArrowed = !isArrowed
+        })
+    </script>
+</body>
+</html>
