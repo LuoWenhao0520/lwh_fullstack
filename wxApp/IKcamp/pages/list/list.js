@@ -5,22 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    arrList: []
+    arrList:[]
   },
 
-  updataArrayList(){
-    let arr = this.data.arrList
-    // ...解构
-    arr.push(...this.createData())
-    this.setData({
-      arrList: arr
-    })
-  },
-  createData() {
-    let length = this.data.arrList.length
-    if(length >= 30) return []
-    return Array.from({length: 3}, (v,i) => `数据${1+i+length}`)
-  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -49,6 +36,22 @@ Page({
 
   },
 
+  updataArrayList(){
+    let arr = this.data.arrList
+    // ...结构
+    arr.push(...this.createData())
+    this.setData({
+      arrList: arr
+    })
+  },
+
+  createData() {
+    let length = this.data.arrList.length
+    if(length > 30)
+      return []
+    return Array.from({length:3}, (v,i) => `数据${1 + i + length}`)
+  },
+
   /**
    * 生命周期函数--监听页面卸载
    */
@@ -67,7 +70,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log('到底了')
+    console.log("到底了");
     this.updataArrayList()
   },
 

@@ -35,8 +35,8 @@
     "packNpmRelationList": []
   },
   "compileType": "miniprogram",
-  "libVersion": "2.0.4",
-  "appid": "wx409a4530dbc807fe",
+  "libVersion": "2.15.0",
+  "appid": "wx216b2293dd427e63",
   "projectname": "IKcamp",
   "debugOptions": {
     "hidedInDevtools": []
