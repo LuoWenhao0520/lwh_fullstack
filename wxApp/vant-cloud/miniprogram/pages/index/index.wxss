@@ -37,3 +37,11 @@
 .new-item:hover{
     box-shadow: none;
 }
+
+.group-dialog-body{
+    z-index: 1;
+}
+
+.notify-selector{
+    z-index: 2;
+}

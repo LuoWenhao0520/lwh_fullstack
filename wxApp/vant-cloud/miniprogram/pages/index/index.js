@@ -1,4 +1,5 @@
 // miniprogram/pages/index/index.js
+import Notify from '../../miniprogram_npm/@vant/weapp/notify/notify';
 Page({
 
   /**
@@ -20,8 +21,10 @@ Page({
   onLoad: function (options) {
 
   },
-  onGroupNameChange() {
-    
+  onGroupNameChange(event) {
+    this.setData({
+      groupName:event.detail
+    })
   },
 
   onClose(){
@@ -30,7 +33,46 @@ Page({
     })
   },
   createGroup() {
-
+    // 把groupName传给后端
+    const self = this
+    if(self.data.groupName === ''){
+      Notify({
+        message: '起个名字吧',
+        duration: 1500,
+        selector: '#notify-selector',
+        backgroundr: '#dc3545'
+      });
+      self.setData({
+        newGroupModal: true
+      })
+      return
+    }
+    wx.cloud.callFunction({
+      name: 'createGroup',
+      data: {
+        groupName: self.data.groupName
+      },
+      success(res) {
+        // console.log(res);
+        self.setData({
+          groupName: ''
+        })
+        Notify({
+          message: '新建成功',
+          duration: 1500,
+          selector: '#notify-selector',
+          background: '#28a745'
+        });
+        setTimeout(() => {
+          wx.switchTab({
+            url: '/pages/group/group'
+          })
+        },1500)
+      },
+      fail(err) {
+        console.log('错误', err);
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

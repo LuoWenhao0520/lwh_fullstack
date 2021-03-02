@@ -31,3 +31,6 @@
     />
   </view>
 </van-dialog>
+
+<!-- notify -->
+<van-notify id="notify-selector" />
