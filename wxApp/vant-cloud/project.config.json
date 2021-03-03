@@ -40,6 +40,7 @@
   "appid": "wx216b2293dd427e63",
   "projectname": "vant-cloud",
   "libVersion": "2.14.1",
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "condition": {
     "search": {
       "list": []
