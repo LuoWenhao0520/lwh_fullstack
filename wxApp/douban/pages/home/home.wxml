@@ -11,7 +11,7 @@
                 <view class="arrow"></view>
             </view>
         </view>
-        <scroll-view class="scrool-view__movie" scroll-x="true">
+        <scroll-view class="scroll-view__movie" scroll-x="true">
             <!-- 组件：一部电影 -->
             <movieItem class="item"></movieItem>
         </scroll-view>
