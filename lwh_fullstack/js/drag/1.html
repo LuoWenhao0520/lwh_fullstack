@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .drag{
+            display: flex;
+            position: absolute;
+            left: 0;right: 0;
+            width: 100px;
+            height: 100px;
+            background-color:red;
+            text-align: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .drag1{
+            display: flex;
+            position: absolute;
+            left: 0;right: 0;
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            text-align: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="drag">drag1</div>
+    <div class="drag1">drag2</div>
+    <!-- MouseDown MouseMove MoudeUp -->
+    <script>
+        const drag = document.querySelector('.drag')
+        const drag2 = document.querySelector('.drag1')
+        function dragEle(ele){
+            let preX = 0,preY = 0;
+            let width = ele.offsetWidth / 2
+            let height = ele.offsetHeight / 2
+            console.log(`width:${width},height:${height}`);
+
+            
+
+            ele.addEventListener('mousedown', () => {
+                const onMOve = (event) => {
+                // console.log(event);
+                    let x = event.clientX,y = event.clientY;
+                    
+                    console.log(`${x},${y}`);
+                    ele.style.transform = `translate3d(${x - width}px,${y-height}px,0)`
+                }
+                document.addEventListener('mousemove',onMOve);
+                document.addEventListener('mouseup',() => {
+                    document.removeEventListener('mousemove',onMOve);
+                })
+            })
+        }
+        dragEle(drag)
+        dragEle(drag2)
+        
+
+    </script>
+</body>
+</html>
