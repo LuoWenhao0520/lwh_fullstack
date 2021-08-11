@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="suggest"/>
+    <div id="wrap"></div>
+    <script>
+        const suggest = document.querySelector('#suggest');
+        const wrap = document.querySelector('#wrap');
+        let timeOut = null;
+        function handleInput(event) {
+            // http://neteasecloudmusicapi.zhaoboy.com/search?keywords=%E6%B5%B7%E9%98%94%E5%A4%A9%E7%A9%BA
+            const val = event.target.value;
+            // console.log(val);
+            if(timeOut) clearTimeout(timeOut);
+            timeOut = setTimeout(() => {
+                console.log('防抖触发');
+            },500)
+            // if(!val)
+            //     return;
+            // const url = `http://neteasecloudmusicapi.zhaoboy.com/search?keywords=${val}`;
+            // fetch(url)
+            // .then(res => res.json())
+            // .then(data => {
+            //     let lis = data.result.songs.map((item) => {
+            //         return `
+            //         <li>${item.name}</li>
+            //         `
+            //     })
+            //     let html = lis.join('');
+            //     wrap.innerHTML = html;
+            // })
+        }
+        suggest.addEventListener('input',handleInput)
+    </script>
+</body>
+</html>

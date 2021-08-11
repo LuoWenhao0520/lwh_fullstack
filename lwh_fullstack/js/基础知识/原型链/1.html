@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Person() {
+
+        }
+
+        var person = new Person();
+
+        console.log(person); // person.__proto__ == Person.prototype
+        console.log(Person.prototype);
+
+        // __proto__ 是用来找原型的
+
+        function Grand() {
+            this.lastName = 'LLL';
+        }
+
+        // Father.prototype.lastName = 'Luo'
+        function Father() {
+            this.name = 'fa_zs'
+            this.fortune = {
+                card: 'visa'
+            }
+        }
+
+
+        function Son() {
+            this.hobbit = 'son_hob'
+        }
+
+        var ground = new Grand();
+
+        Father.prototype = ground
+
+        var father = new Father();
+        Son.prototype = father
+
+
+        var son = new Son();
+
+
+        console.log(son.hobbit);
+        console.log(son.name);
+        console.log(son.lastName);
+        console.log(son.fortune);
+        son.fortune.card2 = 'master'
+        console.log(son);
+        console.log(father);
+        console.log(son.toString());
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+
+    <div class="wrap">
+        <div class="container">
+            <h1 style="color: white; margin: 0; text-align: center">注册账号</h1>
+            <form action="${pageContext.request.contextPath}/register2" method="post" id="registerForm">
+                <table>
+                    <tr>
+                        <th>用户名:</th>
+                        <th><input type="text" name = "uname" id="uname" value="${messageModel.object.userName}" placeholder="Your username"/></th>
+                    </tr>
+                    <tr>
+                        <th>密码:</th>
+                        <th><input type="password" name="upwd" id="upwd" placeholder="password" /></th>
+                    </tr>
+                    <tr>
+                        <th>
+                            确认密码:
+                        </th>
+                        <th>
+                            <input type="password" name="upwdAg" id="upwdAg" placeholder="Please confirm your password" />
+                        </th>
+                    </tr>
+                </table>
+                <span id="msg" style="text-align:center; font-size: 12px;color: #ff0000">${messageModel.msg}</span> <br>
+                <input type="button" id="registerBtn" value="Sign up"/>
+                <p class="change_link" style="text-align: center">
+                    <span class="text">已有用户?</span>
+                    <a href="login2.jsp" class="to_login"> 现在登录 </a>
+                </p>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

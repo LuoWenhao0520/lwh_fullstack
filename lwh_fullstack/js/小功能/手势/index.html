@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap{
+            height: 200px;
+            width: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <a href="http://www.baidu.com" target="_blank">baidu.com</a>
+    <div class="wrap">
+    </div>
+    <script>
+        // touchstart -> move -> end -> click
+        // 事件: 捕获阶段 目标阶段 冒泡阶段
+        const wrap = document.querySelector('.wrap');
+        let timeOut = null;
+        let startX = 0,startY = 0;
+
+        wrap.addEventListener('press', () => {
+            console.log('收到press 事件');
+        })
+        function start() {
+            timeOut = setTimeout(() => {
+                console.log('press 发生了');
+                let e = new CustomEvent('press');
+                wrap.dispatchEvent(e);
+            },500);
+        }
+
+        wrap.addEventListener('touchstart', (event) => {
+            // console.log('touchstart');
+            startX = event.touches[0].clientX;
+            startY = event.touches[0].clientY;
+            start();
+        })
+
+        wrap.addEventListener('click', () => {
+            console.log('click');
+        })
+
+        function end() {
+            clearTimeout(timeOut);
+        }
+
+        wrap.addEventListener('touchmove', (event) => {
+            let diffX = event.touches[0].clientX - startX;
+            let diffY = event.touches[0].clientY - startY;
+            console.log(diffX);
+            if(diffX ** 2 + diffY ** 2 < 10000)
+                    return;
+            if(Math.abs(diffX) > Math.abs(diffY)) {
+                if(diffX > 0){
+                    console.log('右滑动');
+                }else {
+                    console.log('左滑动');
+                }
+            }else {
+                if(diffY > 0){
+                    console.log('上滑动');
+                }else {
+                    console.log('下滑动');
+                }
+            }
+        })
+
+        wrap.addEventListener('touchend', () => {
+            end();
+        })
+
+        document.querySelector('a')
+        .addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+        })
+        document.querySelector('a')
+        .addEventListener('click', () => {
+            console.log('click baidu 2');
+        })
+    </script>
+</body>
+</html>

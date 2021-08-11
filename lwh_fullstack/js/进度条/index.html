@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin-top: 40px;
+        }
+
+        .progress-bar {
+            width: 80%;
+            height: 3px;
+            background-color: rgba(0,0,0,.3);
+            margin-left: 30px;
+            position: relative;
+        }
+
+        .progress-button {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background-color: yellow;
+            transform: translate(-50%,-50%);
+        }
+
+        .progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar">
+        <div class="progress"></div>
+        <div class="progress-button"></div>
+    </div>
+    <script>
+        const btn = document.querySelector('.progress-button');
+        const progress = document.querySelector('.progress');
+        const progressBar = document.querySelector('.progress-bar');
+        const width = progressBar.offsetWidth;
+        let downX = 0;
+        let startX = btn.offsetLeft;
+        console.log(startX);
+        btn.addEventListener('touchstart',(event) => {
+            const touch = event.touches[0];
+            downX = touch.clientX;
+            startX = btn.offsetLeft;
+        })
+        btn.addEventListener('touchmove', () => {
+            const touch = event.touches[0];
+
+            const diffx = touch.clientX - downX;
+            let move = diffx + startX;
+            if(move < 0)
+                move = 0
+            else if(move > width)
+                move = width;
+            progress.style.width = `${move/width * 100}%`
+            btn.style.left = `${move}px`;
+            console.log(move/width * 100);
+        })
+    </script>
+</body>
+</html>

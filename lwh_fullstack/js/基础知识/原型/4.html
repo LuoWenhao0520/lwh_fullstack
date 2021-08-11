@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <script>
+        function Person() {
+
+        }
+
+        var person = new Person()
+        console.log(person.__proto__)
+        test = {}
+        console.log(test.__proto__);
+        person.__proto__ = test
+
+        console.log(person);
+    </script> -->
+
+    <script>
+        // 深浅拷贝
+        // var a = 1;
+        // var b = a;
+        // a = 2;
+
+        // var x = '123'
+        // var y = x;
+        // x = '234'
+        // console.log(y);
+
+        var a = {
+            name: 'lwh',
+            age: 10
+        }
+
+        var b = a;
+
+        a.name = 'wh'
+
+        console.log(b);
+    </script>
+</body>
+</html>

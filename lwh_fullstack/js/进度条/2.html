@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin-top: 40px;
+        }
+
+        .progress-bar {
+            width: 80%;
+            height: 3px;
+            background-color: rgba(0,0,0,.3);
+            margin-left: 30px;
+            position: relative;
+        }
+
+        .progress-button {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background-color: yellow;
+            transform: translate(-50%,-50%);
+        }
+
+        .progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap1"></div>
+    <div class="wrap2"></div>
+
+    <script>
+        function Progress(selector) {
+            this.progressBar = document.createElement('div');
+            this.progress = document.createElement('div');
+            this.progressButton = document.createElement('div');
+            this.progressBar.classList.add('progress-bar');
+            this.progress.classList.add('progress');
+            this.progressButton.classList.add('progress-button');
+            this.progressBar.appendChild(this.progress)
+            this.progressBar.appendChild(this.progressButton)
+            document.querySelector(selector).appendChild(this.progressBar)
+
+
+            this.initEvent();
+        }
+
+        Progress.prototype.initEvent = function() {
+            this.downX = 0;
+            this.downLeft = 0;
+            this.width = this.progressBar.offsetWidth;
+
+            this.progressButton.addEventListener('touchstart', (event) => {
+                this.downX = event.touches[0].clientX;
+                this.downLeft = this.progressButton.offsetLeft;
+            });
+
+            this.progressButton.addEventListener('touchmove', () => {
+                const diffx = event.touches[0].clientX - this.downX;
+                let moveX = diffx + this.downLeft;
+                if(moveX < 0)
+                    moveX = 0
+                else if(moveX > this.width)
+                    moveX = this.width
+
+                this.progressButton.style.left = `${moveX}px`;
+                this.progress.style.width = `${moveX / this.width * 100}%`;
+            })
+        }
+
+        const wrap1 = new Progress('.wrap1');
+        const wrap2 = new Progress('.wrap2');
+    </script>
+</body>
+</html>

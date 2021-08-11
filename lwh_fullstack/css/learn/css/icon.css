@@ -1,0 +1,45 @@
+.icon {
+    display: block;
+    width: 32px;
+    height: 32px;
+    background: no-repeat;
+    background-size: 100% 100%;
+}
+
+
+.icon-calendar{
+    background-image: url(../icon/calendar.png);
+}
+.icon-files{
+    background-image: url(../icon/files.png);
+}
+.icon-goods{
+    background-image: url(../icon/goods.png);
+}
+.icon-identity{
+    background-image: url(../icon/identity.png);
+}
+.icon-income{
+    background-image: url(../icon/income.png);
+}
+.icon-job{
+    background-image: url(../icon/job.png);
+}
+.icon-positioning{
+    background-image: url(../icon/positioning.png);
+}
+.icon-reward{
+    background-image: url(../icon/reward.png);
+}
+.icon-search{
+    background-image: url(../icon/search.png);
+}
+.icon-settings{
+    background-image: url(../icon/settings.png);
+}
+.icon-tag{
+    background-image: url(../icon/tag.png);
+}
+.icon-time{
+    background-image: url(../icon/time.png);
+}
