@@ -1,27 +1,27 @@
 <template>
-  <div class="header">
+  <div class="header" @click="showDetail">
     <div class="content-wrapper">
       <div class="avatar">
-        <img width="64" height="64" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Fc8%2Fdd%2Fb9%2Fc8ddb934a69d90216f1b406cf3975475.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631357858&t=a2b4595b5ec3f8e3f33eb2b62db1b518" alt="">
+        <img width="64" height="64" :src="seller.avatar" alt="">
       </div>
 
       <div class="content">
         <div class="title">
           <span class="brand"></span>
-          <span class="name">粥品香坊（回龙观）</span>
+          <span class="name">{{seller.name}}</span>
         </div>
 
         <div class="description">
-          蜂鸟专送/38分钟送达
+          {{seller.description}}/{{seller.deliveryTime}}分钟送达
         </div>
-        <div class="support">
+        <div class="support" v-if="seller.supports">
           <SupportIco :size=1 :type=0></SupportIco>
-          <span class="text">在线支付满28减5</span>
+          <span class="text">{{seller.supports[0].description}}</span>
         </div>
       </div>
 
-      <div class="support-count">
-        <span class="count">5个</span>
+      <div class="support-count" v-if="seller.supports">
+        <span class="count">{{seller.supports.length}}</span>
         <i class="icon-keyboard_arrow_right"></i>
 
       </div>
@@ -29,23 +29,54 @@
 
     <div class="bulletin-wrapper">
       <span class="bulletin-title"></span>
-      <span class="bulletin-text">粥品香坊其烹饪粥料的秘方源于中国千年古法，在融和现代制作工艺，由世界烹饪大师屈浩先生领衔研发。坚守纯天然、0添加的良心品质深得消费者青睐，发展至今成为粥类的引领品牌。是2008年奥运会和2013年园博会指定餐饮服务商。</span>
+      <span class="bulletin-text">{{seller.bulletin}}</span>
       <i class="icon-keyboard_arrow_right"></i>
 
     </div>
 
     <div class="background">
-      <img width="100%" height="100%" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Fc8%2Fdd%2Fb9%2Fc8ddb934a69d90216f1b406cf3975475.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631357858&t=a2b4595b5ec3f8e3f33eb2b62db1b518" alt="">
+      <img width="100%" height="100%" :src="seller.avatar" alt="">
     </div>
+
+    <header-detail :seller="seller" v-show="detailVisiable" @hide="hideDetail"></header-detail>
+
+    <!-- <button @click="showSeller">showSeller</button> -->
+  
   </div>
 </template>
 
 <script>
-import SupportIco from '@/components/support-ico/support-ico'
+import SupportIco from '@/components/support-ico/support-ico';
+import HeaderDetail from '@/components/header-detail/Header-detail'
+
 export default {
+  props: {
+    seller: {
+      type: Object,
+      default() {
+        return {}
+      }
+    }
+  },
+  data () {
+    return {
+      detailVisiable: false
+    }
+  },
   components: {
-    SupportIco
+    SupportIco,
+    HeaderDetail
+  },
+
+  methods: {
+    showDetail() {
+      this.detailVisiable = true;
+    },
+    hideDetail(e) {
+      this.detailVisiable = false;
+    }
   }
+
 }
 </script>
 
