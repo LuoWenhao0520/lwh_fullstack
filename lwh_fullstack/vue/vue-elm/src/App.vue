@@ -1,6 +1,21 @@
 <template>
   <div class="app">
     <Header :seller="seller"></Header>
+    <div class="tab">
+      <div class="tab-wrapper hold">
+        <router-link to="/">商品</router-link>
+      </div>
+      <div class="tab-wrapper">
+        <router-link to="/comment">评论</router-link>
+      </div>
+      <div class="tab-wrapper">
+        <router-link to="/seller">商家</router-link>
+      </div>
+    </div>
+
+    <div class="page">
+      <router-view :seller="seller"></router-view>
+    </div>
   </div>
 </template>
 
@@ -31,5 +46,25 @@ export default {
 </script>
 
 <style lang="stylus">
+@import './common/stylus/variable.styl';
 
+.tab
+  display flex
+  .tab-wrapper
+    flex 1
+    text-align center
+    height 36px
+    line-height 36px
+    a
+      display inline-block
+      width 100%
+      color #666
+      text-decoration none
+
+    .router-link-exact-active
+      color $color-red
+      border-bottom 2px solid $color-red
+  
+
+      
 </style>

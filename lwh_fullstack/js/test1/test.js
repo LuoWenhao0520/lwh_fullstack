@@ -1,7 +1,15 @@
-console.log(a);; 
-a(); 
-var a = 3; 
-function a (){ console.log(10); } 
-console.log(a);
-a = 6; 
-a()
+var length = 10;
+function fn() {
+  console.log(this);
+  return this.length+1;
+}
+var obj = {
+  length: 5,
+  test1: function() {
+    return fn();
+  }
+};
+obj.test2=fn;
+//下面代码输出是什么
+console.log(obj.test1())
+console.log(fn()===obj.test2())

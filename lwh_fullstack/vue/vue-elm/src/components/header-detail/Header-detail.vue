@@ -61,9 +61,6 @@ export default {
     hide () {
       this.$emit('hide',false)
     }
-  },
-  created () {
-    console.log(this.seller);
   }
 }
 </script>
