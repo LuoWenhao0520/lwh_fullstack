@@ -13,6 +13,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="less" scoped>
+body {
+  background: url(../../images/1-1.jpg) no-repeat;
+}
 </style>

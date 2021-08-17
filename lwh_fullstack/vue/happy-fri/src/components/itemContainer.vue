@@ -14,28 +14,28 @@
         <div class="item_list_container">
           <header class="item_title">{{itemDetail[itemNum-1].topic_name}}</header>
           <ul>
-            <li class="item_list" v-for="(item,index) in itemDetail[itemNum-1].topic_answer" :key="index" @click="choosed(index,item.topic_answer_id)">
+            <li class="item_list" v-for="(item,index) in itemDetail[itemNum-1].topic_answer" :key="index" @click="choosed(index,item.is_standard_answer)">
               <span class="option_style" :class="{'has_choosed' : choosedNum == index}">{{ansType(item.topic_answer_id - 1)}}</span>
               <span class="option_detail">{{item.answer_name}}</span>
             </li>
           </ul>
         </div>
       </div>
-      <div class="button_style next_item" @click="nextItem" v-if="isShowNextItem"></div>
-      <router-link v-else class="button_style submit_item" to="/score"></router-link>
+      <span class="button_style next_item" @click="nextItem" v-if="isShowNextItem"></span>
+      <span v-else class="button_style submit_item" @click="submitAnswer"></span>
     </div>
   </section>
 </template>
 
 <script>
-import { mapState,mapMutations } from 'vuex'
+import { mapState,mapMutations,mapActions } from 'vuex'
 export default {
   props: ['fatherComponent'],
   data() {
     return {
       isHome: false,
       choosedNum: null, //选中答案的索引
-      chooseId: null //选中答案的id
+      isChooseRightAnswer: 0 //选中答案的id
     }
   },
   computed: {
@@ -53,10 +53,11 @@ export default {
   },
   methods: {
 
-    ...mapMutations(['toNextItem']),
-    choosed(index,id) {
+    ...mapMutations(['TO_NEXT_ITEM']),
+    ...mapActions(['toNextItem']),
+    choosed(index,isStandardAnswer) {
       this.choosedNum = index
-      this.chooseId = id
+      this.isChooseRightAnswer = isStandardAnswer
     },
 
     ansType(type) {
@@ -65,6 +66,18 @@ export default {
     },
 
     nextItem() {
+      if(this.choosedNum === null) {
+        alert('请选一个择答案');
+        return
+      }
+      this.toNextItem(this.isChooseRightAnswer)
+
+      this.choosedNum = null;
+      this.isChooseRightAnswer = 0
+
+    },
+
+    submitAnswer(){
       if(this.choosedNum === null) {
         alert('请选一个择答案');
         return
@@ -78,6 +91,7 @@ export default {
       this.choosedNum = null;
       this.chooseId = null;
 
+      this.$router.push('/score')
     }
   }
 }
