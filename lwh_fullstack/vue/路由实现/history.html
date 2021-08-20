@@ -31,6 +31,8 @@
       let linkList = document.querySelectorAll('a[href]')
       linkList.forEach(el => el.addEventListener('click',e => {
         e.preventDefault();
+        history.pushState(null,'',el.getAttribute('href'))
+        routerView.innerHTML = location.pathname
       }))
     }
 
