@@ -1,9 +1,9 @@
+@annotation
+class MyClass {
 
-function annotation() {
-    target.annotated = true;
 }
 
-@annotation
-class MyClass{
-    
+
+function annotation(target) {
+    target.annotated = true
 }
