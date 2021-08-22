@@ -1,15 +1,19 @@
-var length = 10;
-function fn() {
-  console.log(this);
-  return this.length+1;
-}
-var obj = {
-  length: 5,
-  test1: function() {
-    return fn();
+/**
+ * @param {character[]} chars
+ * @return {number}
+ */
+ var compress = function(chars) {
+  let s = []
+  for(let i = 0,len = chars.length;i < len;i++) {
+      let cnt = 1,now = chars[i]
+      while(i + 1 < len && chars[i + 1] === now) {
+          cnt++;
+          i++;
+      }
+      s.push(now)
+      s.push(''+cnt)
   }
+  chars = s
+  // console.log(chars);
+  return s.length
 };
-obj.test2=fn;
-//下面代码输出是什么
-console.log(obj.test1())
-console.log(fn()===obj.test2())
