@@ -1,0 +1,21 @@
+<script>
+  // 借用构造函数继承
+
+  function Parent() {
+    this.names = ['lwh','wen']
+  }
+
+  function Child() {
+    Parent.call(this)
+  }
+
+  let child1 = new Child()
+
+  child1.names.push('hao')
+
+  console.log(child1);
+
+  let child2 = new Child()
+
+  console.log(child2);
+</script>

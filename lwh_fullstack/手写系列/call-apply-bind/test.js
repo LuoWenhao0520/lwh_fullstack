@@ -1,26 +1,23 @@
-Function.prototype.mycall = function(thisArg,...args){
+Function.prototype.myApply = function(thisArg,...args){
   if(typeof this !== 'function'){
-    throw new TypeError('error')
+    throw new Error('error')
   }
 
-  const fn = Symbol('fn');
-  thisArg = thisArg || window
-  args = args || []
+  const fn = Symbol('fn')
 
   thisArg[fn] = this
-  var res = thisArg[fn](...args)
+  const result = thisArg[fn](...args)
   delete thisArg[fn]
-  return res
+  return result
 }
 
-var obj = {
-  name: 'lwh',
-  age: 18
+function Person(name,age){
+  this.name = name,
+  this.age = age
 }
 
+let lwh = {}
 
-function foo(a,b){
-  console.log(this.name,this.age);
-  return this.age + a + b;
-}
-console.log(foo.call(obj,1,2));
+Person.myApply(lwh,['lwh',12])
+
+console.log(lwh);

@@ -21,20 +21,7 @@
             timeOut = setTimeout(() => {
                 console.log('防抖触发');
             },500)
-            // if(!val)
-            //     return;
-            // const url = `http://neteasecloudmusicapi.zhaoboy.com/search?keywords=${val}`;
-            // fetch(url)
-            // .then(res => res.json())
-            // .then(data => {
-            //     let lis = data.result.songs.map((item) => {
-            //         return `
-            //         <li>${item.name}</li>
-            //         `
-            //     })
-            //     let html = lis.join('');
-            //     wrap.innerHTML = html;
-            // })
+
         }
         suggest.addEventListener('input',handleInput)
     </script>

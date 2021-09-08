@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .left{
+      display: none;
+    }
+    .main {
+      opacity: 0;
+    }
+    .right {
+      visibility: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">left</div>
+    <div class="main">main</div>
+    <div class="right">right</div>
+  </div>
+  <script>
+    class C {
+      a() {
+        console.log(this);
+      }
+      b = () => {
+        console.log(this);
+      };
+    }
+    c = new C();
+    c.a();
+    f = c.a;
+    f();
+    c.b();
+  </script>
+</body>
+</html>

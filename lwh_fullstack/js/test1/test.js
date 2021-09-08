@@ -1,19 +1,5 @@
-/**
- * @param {character[]} chars
- * @return {number}
- */
- var compress = function(chars) {
-  let s = []
-  for(let i = 0,len = chars.length;i < len;i++) {
-      let cnt = 1,now = chars[i]
-      while(i + 1 < len && chars[i + 1] === now) {
-          cnt++;
-          i++;
-      }
-      s.push(now)
-      s.push(''+cnt)
-  }
-  chars = s
-  // console.log(chars);
-  return s.length
-};
+let version1 = '1.0.1'
+
+version1 = version1.split('.').map((item) => (Number(item)))
+
+console.log(version1);
